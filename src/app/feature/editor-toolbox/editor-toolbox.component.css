@@ -1,0 +1,74 @@
+.editor-toolbox {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 300px;
+  height: 100%;
+  padding-top: 5rem;
+  transition: width 1s;
+}
+
+.editor-toolbox.hidden-toolbox {
+  width: 0;
+}
+
+.instruments {
+  width: 260px;
+  margin: 0 20px;
+}
+
+.show-toolbox {
+  font-size: 3rem;
+  position: absolute;
+  right: 300px;
+  top: 0;
+  padding-left: 8px;
+  padding-bottom: 8px;
+  background-color: #576081;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 0px;
+  transition: right 1s;
+}
+
+.hidden-toolbox .show-toolbox {
+  right: 0;
+}
+
+.show-toolbox:hover {
+  cursor: pointer;
+}
+
+.color {
+  height: 30px;
+  width: 30px;
+}
+
+.color:hover {
+  cursor: pointer;
+}
+
+.tool-option i {
+  padding: 5px;
+  border: 1px solid transparent;
+  transition: 0.25s linear border;
+}
+
+.tool-option.selected i {
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.tool-option {
+  cursor: pointer;
+}
+
+.recent-tasks .siimple-grid-row:hover {
+  cursor: pointer;
+}
+
+.devider {
+  height: 1px;
+  border-top: 1px solid white;
+  margin: 10px 0;
+}

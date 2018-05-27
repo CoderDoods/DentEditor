@@ -1,0 +1,8 @@
+<section class="fill-parent editor-pane">
+  <div class="fill-parent editor-pane-image-container">
+    <input *ngIf="isImageInputVisible" (change)="onFileChange($event)" id="imageSelector" type="file" accept="image/x-png,image/gif,image/jpeg">
+    <canvas #canvas id="imageCanvas" (mousemove)="handleMouseMove($event)" (mousedown)="handleMouseDown($event)" (mouseup)="handleMouseOut($event)"
+      (mouseout)="handleMouseOut($event)" height="0" width="0">
+    </canvas>
+  </div>
+</section>

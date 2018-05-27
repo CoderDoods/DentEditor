@@ -1,0 +1,115 @@
+<section [class.hidden-toolbox]="shouldToolboxBeHidden" class="editor-toolbox siimple-bg--navy ">
+  <i (click)="showOrHide()" class="fas fa-angle-right show-toolbox"></i>
+
+  <div class="instruments">
+    <div class="box">
+      <h3>Colours</h3>
+
+      <div class="siimple-grid">
+        <div class="siimple-grid-row color-palette">
+          <div *ngFor="let color of colors$ | async" [style.background-color]="color" (click)="selectColor(color)" class="siimple-grid-col siimple-grid-col--3 color"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="devider siimple-color--grey"></div>
+
+    <div class="box">
+      <h3>Colour Info</h3>
+
+      <div class="siimple-grid">
+        <div class="siimple-grid-row color-info">
+          <div class="siimple-grid-col siimple-grid-col--1">R</div>
+          <div class="siimple-grid-col siimple-grid-col--5">{{this.selectedColor.rgb.red}}</div>
+          <div class="siimple-grid-col siimple-grid-col--1">H</div>
+          <div class="siimple-grid-col siimple-grid-col--5">{{this.selectedColor.hsl.hue}}</div>
+        </div>
+
+        <div class="siimple-grid-row color-info">
+          <div class="siimple-grid-col siimple-grid-col--1">G</div>
+          <div class="siimple-grid-col siimple-grid-col--5">{{this.selectedColor.rgb.green}}</div>
+          <div class="siimple-grid-col siimple-grid-col--1">S</div>
+          <div class="siimple-grid-col siimple-grid-col--5">{{this.selectedColor.hsl.saturation}}</div>
+        </div>
+
+        <div class="siimple-grid-row color-info">
+          <div class="siimple-grid-col siimple-grid-col--1">B</div>
+          <div class="siimple-grid-col siimple-grid-col--5">{{this.selectedColor.rgb.blue}}</div>
+          <div class="siimple-grid-col siimple-grid-col--1">L</div>
+          <div class="siimple-grid-col siimple-grid-col--5">{{this.selectedColor.hsl.lightness}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="devider siimple-color--grey"></div>
+
+    <div class="box">
+      <h3>Tools</h3>
+
+      <div class="siimple-grid tools">
+        <div class="siimple-grid-row">
+          <div [class.selected]="isPenSelected" (click)="selectPen()" class="siimple-grid-col siimple-grid-col--3 tool-option pen">
+            <i class="fas fa-pencil-alt"></i>
+          </div>
+          <div [class.selected]="isCircleSelected" (click)="selectCircle()" class="siimple-grid-col siimple-grid-col--3 tool-option circle">
+            <i class="far fa-dot-circle"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="devider siimple-color--grey"></div>
+
+    <div class="siimple-grid">
+      <div class="siimple-grid-row">
+        <div [style.background-color]="selectedColor.hex" class="siimple-grid-col siimple-grid-col--3 color">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="devider siimple-color--grey"></div>
+
+    <!-- TODO: Disable/Enable when needed -->
+    <div class="box">
+      <div class="siimple-grid">
+        <div class="siimple-grid-row">
+          <div (click)="saveImage()" class="siimple-grid-col siimple-grid-col--3">
+            <button [disabled]="!isImageLoaded || (tasks$ | async).length === 0" id="saveImage" class="siimple-btn siimple-btn--teal">
+              <i class="far fa-save fa-lg"></i>
+            </button>
+          </div>
+          <div (click)="deleteImage()" class="siimple-grid-col siimple-grid-col--3">
+            <button [disabled]="!isImageLoaded" id="deleteImage" class="siimple-btn siimple-btn--pink">
+              <i class="fas fa-trash fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>Recent tasks</h3>
+
+      <div class="siimple-grid recent-tasks">
+        <div *ngFor="let task of tasks$ | async; let i = index" class="siimple-grid-row">
+          <div class="siimple-grid-col siimple-grid-col--11">
+            {{task.name}}
+          </div>
+          <div *ngIf="i === 0" (click)="revert()" class="siimple-grid-col siimple-grid-col--1">
+            <i class="fas fa-undo-alt"></i>
+          </div>
+        </div>
+
+        <div *ngIf="(tasks$ | async).length > 2 " class="siimple-grid-row reset">
+          <div class="siimple-grid-col siimple-grid-col--11">
+            Reset
+          </div>
+          <button (click)="reset()" class="siimple-grid-col siimple-grid-col--1">
+            <i class="fas fa-anchor"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
