@@ -20,5 +20,5 @@ npm install
 Then to run the application:
 
 ```
-npm run serve
+npm run start
 ```
